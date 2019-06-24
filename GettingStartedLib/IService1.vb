@@ -1,27 +1,20 @@
-﻿' NOTE: You can use the "Rename" command on the context menu to change the interface name "IService1" in both code and config file together.
-<ServiceContract()>
-Public Interface IService1
+﻿Imports System.ServiceModel
 
-    <OperationContract()>
-    Function GetData(ByVal value As Integer) As String
+Namespace GettingStartedLib
+    <ServiceContract(Namespace:="http://Microsoft.ServiceModel.Samples")>
+    Public Interface ICalculator
 
-    <OperationContract()>
-    Function GetDataUsingDataContract(ByVal composite As CompositeType) As CompositeType
+        <OperationContract()>
+        Function Add(ByVal n1 As Double, ByVal n2 As Double) As Double
 
-    ' TODO: Add your service operations here
+        <OperationContract()>
+        Function Subtract(ByVal n1 As Double, ByVal n2 As Double) As Double
 
-End Interface
+        <OperationContract()>
+        Function Multiply(ByVal n1 As Double, ByVal n2 As Double) As Double
 
-' Use a data contract as illustrated in the sample below to add composite types to service operations.
-' You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "GettingStartedLib.ContractType".
+        <OperationContract()>
+        Function Divide(ByVal n1 As Double, ByVal n2 As Double) As Double
 
-<DataContract()>
-Public Class CompositeType
-
-    <DataMember()>
-    Public Property BoolValue() As Boolean
-
-    <DataMember()>
-    Public Property StringValue() As String
-
-End Class
+    End Interface
+End Namespace

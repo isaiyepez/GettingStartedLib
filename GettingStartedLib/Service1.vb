@@ -1,19 +1,36 @@
-﻿' NOTE: You can use the "Rename" command on the context menu to change the class name "Service1" in both code and config file together.
-Public Class Service1
-    Implements IService1
+﻿Imports System.ServiceModel
 
-    Public Function GetData(ByVal value As Integer) As String Implements IService1.GetData
-        Return String.Format("You entered: {0}", value)
-    End Function
+Namespace GettingStartedLib
+    Public Class CalculatorService
+        Implements ICalculator
 
-    Public Function GetDataUsingDataContract(ByVal composite As CompositeType) As CompositeType Implements IService1.GetDataUsingDataContract
-        If composite Is Nothing Then
-            Throw New ArgumentNullException("composite")
-        End If
-        If composite.BoolValue Then
-            composite.StringValue &= "Suffix"
-        End If
-        Return composite
-    End Function
+        Public Function Add(n1 As Double, n2 As Double) As Double Implements ICalculator.Add
+            Dim result As Double = n1 + n2
+            'Code added to write output to the console window
+            Console.WriteLine("Received add({0},{1})", n1, n2)
+            Console.WriteLine("Return: {0}", result)
+            Return result
+        End Function
 
-End Class
+        Public Function Subtract(n1 As Double, n2 As Double) As Double Implements ICalculator.Subtract
+            Dim result As Double = n1 - n2
+            Console.WriteLine("Received Subtract({0}, {1}", n1, n2)
+            Console.WriteLine("Return: {0}", result)
+            Return result
+        End Function
+
+        Public Function Multiply(n1 As Double, n2 As Double) As Double Implements ICalculator.Multiply
+            Dim result As Double = n1 * n2
+            Console.WriteLine("Received Multiply({0}, {1})", n1, n2)
+            Console.WriteLine("Return: {0}", result)
+            Return result
+        End Function
+
+        Public Function Divide(n1 As Double, n2 As Double) As Double Implements ICalculator.Divide
+            Dim result As Double = n1 / n2
+            Console.WriteLine("Received Divide({0}, {1})", n1, n2)
+            Console.WriteLine("Return: {0}", result)
+            Return result
+        End Function
+    End Class
+End Namespace
